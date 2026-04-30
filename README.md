@@ -1,4 +1,8 @@
 <p align="center">
+  <img src="assets/banner.svg" alt="dataforseo-claude — SEO Agency Killer for Claude Code" width="900"/>
+</p>
+
+<p align="center">
   <strong>SEO Agency Killer</strong> for Claude Code — powered by the DataForSEO API.
 </p>
 
