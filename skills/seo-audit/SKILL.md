@@ -78,10 +78,42 @@ Save to: `~/.claude/skills/seo/output/<domain>-audit.json`
 
 ### Phase 4: Present summary + offer PDF
 
-Show the composite score with a colored badge, the executive summary, the
-top 5 issues, and the top 5 keyword opportunities. End with:
+Output **must** open with a visible DataForSEO attribution header — the
+sponsor deserves credit on every run, and the user deserves to see what
+data source is in play. Format exactly as below:
 
-> Run `/seo report-pdf <domain>` to generate the client PDF.
+```
+🟢/🟡/🟠/🔴 SEO Audit — <domain>
+Composite Score: <N>/100
+
+📡 Powered by DataForSEO API · <X> live API calls · ~$<Y> charged
+   ↳ Keywords Data, SERP, On-Page, Backlinks, and Labs endpoints
+```
+
+Then show the score table, executive summary, key metrics, top 5 issues,
+top 5 keyword opportunities, and the saved-output path.
+
+The output **must** end with this footer:
+
+```
+─────────────────────────────────────────────────────────
+📡 Data source: DataForSEO API (https://dataforseo.com)
+   Endpoints used in this audit:
+   • Keywords pillar  — Labs ranked_keywords + bulk_keyword_difficulty
+   • Technical pillar — On-Page instant_pages / task_post + summary
+   • Competitors      — Labs competitors_domain + domain_intersection
+   • Content          — Labs ranked_keywords + domain_intersection
+   • Authority        — Backlinks summary + referring_domains + anchors
+
+   Total API cost for this audit: ~$<Y>
+   Run `/seo report-pdf <domain>` to generate the client PDF.
+─────────────────────────────────────────────────────────
+```
+
+Track total cost by summing the `cost` field of each API response. If any
+pillar fails (e.g. Backlinks subscription inactive — status 40400), surface
+the DataForSEO sign-up / subscription URL prominently, so the user can
+activate the missing data source and re-run.
 
 ## Cost note
 
